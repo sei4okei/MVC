@@ -1,0 +1,32 @@
+﻿@model Deal
+
+<h1>Are you sure you want to delete this club?</h1>
+
+<form method="post" asp-action="Create" asp-controller="Deal">
+    <div>
+        Amount: <input asp asp-for="Amount" placeholder="Amount" />
+        <span asp-validation-for="Amount"></span>
+    </div>
+    <div>
+        Partner: <input asp-for="Partner" placeholder="Partner" />
+        <span asp-validation-for="Partner"></span>
+    </div>
+    <div>
+        Profit: <input asp-for="Profit" placeholder="Profit" />
+        <span asp-validation-for="Profit"></span>
+    </div>
+    <div>
+        ComissionCash: <input asp-for="ComissionCash" placeholder="ComissionCash" />
+        <span asp-validation-for="ComissionCash"></span>
+    </div>
+    <div>
+        ComissionPercent: <input asp-for="ComissionPercent" placeholder="ComissionPercent" />
+        <span asp-validation-for="ComissionPercent"></span>
+    </div>
+    <div>
+        <input type="submit" value="Confirm" />
+    </div>
+</form>
+
+@{
+}

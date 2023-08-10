@@ -1,0 +1,23 @@
+﻿@using ASPMVCTrial.Models;
+@model List<Deal>
+
+<h1>Hello, this page will be displain Deals!</h1>
+<a type="button" asp-controller="Deal" asp-action="Create">Create</a>
+@foreach (var item in Model)
+{
+    <div>
+        <p>@($"{item.Id}\t{item.Amount}\t{item.ComissionCash}\t{item.ComissionPercent}\t{item.Partner}\t{item.Profit}")</p>
+        <div>
+            <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Deal" asp-action="Edit" asp-route-id="@item.Id">
+                Edit
+            </a>
+            <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Deal" asp-action="Delete" asp-route-id="@item.Id">
+                Delete
+            </a>
+        </div>
+        <br>
+    </div>
+}
+
+@{
+}
