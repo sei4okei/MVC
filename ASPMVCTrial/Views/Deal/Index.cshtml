@@ -1,7 +1,7 @@
 ﻿@using ASPMVCTrial.Models;
 @model List<Deal>
 
-<h1>Hello, this page will be displain Deals!</h1>
+<h1>Hello @User.Identity?.Name, this page will be displain Deals!</h1>
 <a type="button" asp-controller="Deal" asp-action="Create">Create</a>
 @foreach (var item in Model)
 {
