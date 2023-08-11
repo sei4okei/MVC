@@ -2,20 +2,28 @@
 @model List<Deal>
 
 <h1>Hello @User.Identity?.Name, this page will be displain Deals!</h1>
-<a type="button" asp-controller="Deal" asp-action="Create">Create</a>
+@if (User.IsInRole("user") && User.Identity.IsAuthenticated)
+{
+    <a type="button" asp-controller="Deal" asp-action="Create">Create</a>
+}
 @foreach (var item in Model)
 {
     <div>
-        <img class="card-img-top" src="@item.Image" alt="Card image cap">
-        <p>@($"{item.Id}\t{item.Amount}\t{item.ComissionCash}\t{item.ComissionPercent}\t{item.Partner}\t{item.Profit}")</p>
         <div>
-            <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Deal" asp-action="Edit" asp-route-id="@item.Id">
-                Edit
-            </a>
-            <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Deal" asp-action="Delete" asp-route-id="@item.Id">
-                Delete
-            </a>
+            <img class="card-img-top" src="@item.Image" alt="Card image cap">
         </div>
+        <p>@($"{item.Id}\t{item.Amount}\t{item.ComissionCash}\t{item.ComissionPercent}\t{item.Partner}\t{item.Profit}")</p>
+        @if (User.IsInRole("user") && User.Identity.IsAuthenticated)
+        {
+            <div>
+                <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Deal" asp-action="Edit" asp-route-id="@item.Id">
+                    Edit
+                </a>
+                <a type="button" class="btn btn-sm btn-outline-danger" asp-controller="Deal" asp-action="Delete" asp-route-id="@item.Id">
+                    Delete
+                </a>
+            </div>
+        }
         <br>
     </div>
 }
