@@ -1,6 +1,6 @@
-﻿@model Deal
+﻿@model EditDealViewModel
 
-<form method="post" asp-action="Edit" asp-controller="Deal">
+<form method="post" asp-action="Edit" asp-controller="Deal" enctype="multipart/form-data">
     <div>
         Amount: <input asp asp-for="Amount" placeholder="Amount" />
         <span asp-validation-for="Amount"></span>
@@ -20,6 +20,10 @@
     <div>
         ComissionPercent: <input asp-for="ComissionPercent" placeholder="ComissionPercent" />
         <span asp-validation-for="ComissionPercent"></span>
+    </div>
+    <div>
+        Image: <input asp-for="Image" type="file" />
+        <span asp-validation-for="Image"></span>
     </div>
     <div>
         <input type="submit" value="Confirm" />

@@ -28,6 +28,7 @@ namespace ASPMVCTrial.Services
         public async Task<IEnumerable<Deal>> GetAll() => await context.Deal.ToListAsync();
 
         public async Task<Deal> GetById(int id) => await context.Deal.FirstOrDefaultAsync(d => d.Id == id);
+        public async Task<Deal> GetByIdNoTracking(int id) => await context.Deal.AsNoTracking().FirstOrDefaultAsync(d => d.Id == id);
 
         public bool Save() => context.SaveChanges() > 0 ? true : false;
 

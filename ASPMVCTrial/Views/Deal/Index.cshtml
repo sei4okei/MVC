@@ -6,6 +6,7 @@
 @foreach (var item in Model)
 {
     <div>
+        <img class="card-img-top" src="@item.Image" alt="Card image cap">
         <p>@($"{item.Id}\t{item.Amount}\t{item.ComissionCash}\t{item.ComissionPercent}\t{item.Partner}\t{item.Profit}")</p>
         <div>
             <a type="button" class="btn btn-sm btn-outline-info" asp-controller="Deal" asp-action="Edit" asp-route-id="@item.Id">

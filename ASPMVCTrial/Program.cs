@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using ASPMVCTrial.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using ASPMVCTrial.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IDealService, DealService>();
+builder.Services.AddScoped<IPhotoService, PhotoService>();
+builder.Services.Configure<CloudinarySettings>(builder.Configuration
+    .GetSection("CloudinarySettings"));
 
 builder.Services.AddDbContext<ApplicationContext>(options =>
-        options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"),
+        options.UseMySql(builder.Configuration
+        .GetConnectionString("DefaultConnection"),
         new MySqlServerVersion(new Version(8, 0, 11))
     ));
 
@@ -22,8 +27,9 @@ builder.Services.AddIdentity<AppUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationContext>();
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-       .AddCookie();
+builder.Services
+    .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie();
 
 var app = builder.Build();
 
